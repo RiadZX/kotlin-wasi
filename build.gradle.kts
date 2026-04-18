@@ -15,6 +15,14 @@ kotlin {
         binaries.executable()
         nodejs()
     }
+
+    sourceSets {
+        val wasmWasiMain by getting {
+            dependencies {
+                implementation(kotlin("stdlib-wasm-wasi"))
+            }
+        }
+    }
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsExec>().configureEach {
