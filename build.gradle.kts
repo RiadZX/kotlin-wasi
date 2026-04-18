@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "2.3.10"
+    kotlin("multiplatform") version "2.0.0"
 }
 
 group = "org.example"
@@ -9,14 +9,19 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation(kotlin("test"))
-}
-
 kotlin {
-    jvmToolchain(25)
+    @OptIn(org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl::class)
+    wasmWasi {
+        binaries.executable()
+        nodejs()
+    }
 }
 
-tasks.test {
-    useJUnitPlatform()
+tasks.withType<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsExec>().configureEach {
+    standardInput = System.`in`
+}
+
+tasks.register("runWasm") {
+    group = "application"
+    dependsOn("wasmWasiNodeRun")
 }
