@@ -16,6 +16,13 @@ kotlin {
         nodejs()
     }
 
+//    https://github.com/Kotlin/kotlin-wasm-wasi-template/blob/main/build.gradle.kts
+    targets.withType<org.jetbrains.kotlin.gradle.targets.js.ir.KotlinJsIrTarget> {
+        compilerOptions {
+            freeCompilerArgs.add("-Xwasm-use-traps-instead-of-exceptions")
+        }
+    }
+
     sourceSets {
         val wasmWasiMain by getting {
             dependencies {
@@ -31,5 +38,6 @@ tasks.withType<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsExec>().confi
 
 tasks.register("runWasm") {
     group = "application"
-    dependsOn("wasmWasiNodeRun")
+    description = "Runs the Wasm/WASI binary"
+    dependsOn("wasmWasiNodeDevelopmentRun")
 }

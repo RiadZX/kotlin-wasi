@@ -1,5 +1,6 @@
 
 fun main() {
+    println("test")
     while (true) {
         val input = readlnOrNull()
 
