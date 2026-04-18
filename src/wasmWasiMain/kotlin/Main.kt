@@ -1,14 +1,8 @@
 
 fun main() {
-    println("test")
-    while (true) {
-        val input = readlnOrNull()
+    println("--- WASI Echo Program ---")
+    println("Type something and press Enter (type 'exit' to stop):")
 
-        if (input.isNullOrEmpty() || input == "exit")  {
-            println("exiting because input was nullorEmpty or exit command.")
-            break
-        }
 
-        println("Wasm received: $input")
-    }
+    println("Goodbye!")
 }
