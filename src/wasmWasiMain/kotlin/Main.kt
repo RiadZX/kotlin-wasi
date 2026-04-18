@@ -1,7 +1,5 @@
 fun main() {
-    println("Hello from Kotlin/Wasm!")
-    println("Note: stdin is not fully supported in Node.js WASI")
-    println("Use command line args or read from files instead")
+    println("hello from wasi")
 }
 
 // https://github.com/JetBrains/kotlin/blob/2.3.20/libraries/stdlib/wasm/wasi/src/kotlin/io.kt#L98
